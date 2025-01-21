@@ -1,0 +1,12 @@
+{
+  "extends": "../../packages/config/react-library.json",
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "compilerOptions": {
+    "sourceMap": true,
+    "rootDir": "src",
+    "baseUrl": ".",
+    "paths": {
+      "@permaupload/*": ["./src/*"]
+    }
+  }
+}

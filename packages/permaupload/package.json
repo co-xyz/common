@@ -1,0 +1,80 @@
+{
+  "name": "@co-xyz/permaupload",
+  "version": "0.0.1-alpha",
+  "private": false,
+  "author": "Johannes Krauser <krauser@co.xyz>",
+  "type": "module",
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "scripts": {
+    "check:types": "tsc --noEmit",
+    "build": "pnpm run clean && pnpm run build:esm+types && pnpm run alias",
+    "build:esm+types": "tsc --project tsconfig.build.json --outDir ./dist/esm --declaration --declarationMap --declarationDir ./dist/types",
+    "alias": "tsc-alias --project tsconfig.build.json --outDir ./dist/esm",
+    "clean": "rm -rf dist",
+    "test:build": "publint --strict && attw --pack --ignore-rules cjs-resolves-to-esm"
+  },
+  "devDependencies": {
+    "@types/node": "^20.4.5",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "ethers": "^5",
+    "react": "^19",
+    "react-dom": "^19",
+    "tsc-alias": "^1.8.10",
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@irys/sdk": "^0.2.11",
+    "@tanstack/react-query": "^5.62.14",
+    "@wagmi/core": "^2.16.3",
+    "buffer": "^6.0.3",
+    "crypto-browserify": "^3.12.1",
+    "idb": "^8.0.1",
+    "process": "^0.11.10",
+    "stream-browserify": "^3.0.0",
+    "viem": "^2.22.2",
+    "wagmi": "^2.14.6",
+    "zod": "^3.24.1"
+  },
+  "main": "./dist/esm/exports/index.js",
+  "types": "./dist/types/exports/index.d.ts",
+  "typings": "./dist/types/exports/index.d.ts",
+  "files": [
+    "dist/**",
+    "!dist/**/*.tsbuildinfo",
+    "src/**/*.ts",
+    "!src/**/*.test.ts",
+    "!src/**/*.test-d.ts",
+    "/constants",
+    "/hooks",
+    "/utils",
+    "/types"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "default": "./dist/esm/index.js"
+    },
+    "./constants": {
+      "types": "./dist/types/constants/index.d.ts",
+      "default": "./dist/esm/constants/index.js"
+    },
+    "./hooks": {
+      "types": "./dist/types/hooks/index.d.ts",
+      "default": "./dist/esm/hooks/index.js"
+    },
+    "./utils": {
+      "types": "./dist/types/utils/index.d.ts",
+      "default": "./dist/esm/utils/index.js"
+    },
+    "./types": {
+      "types": "./dist/types/types/index.d.ts",
+      "default": "./dist/esm/types/index.js"
+    }
+  }
+}
